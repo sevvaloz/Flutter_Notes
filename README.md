@@ -1,5 +1,3 @@
-# dart_proje
-
 A new Flutter project.
 
 ## Getting Started
