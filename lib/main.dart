@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
@@ -136,9 +137,27 @@ void main() {
   //school'u extend eder
   print(student1.classes.first.toString());
 
- 
+  print(KonuVeEylem("konu", "eylem"));
 
- 
+  print(KonuVeEylem2("ders anlatimi"));
+  print(KonuVeEylem2(
+      "ders anlatimi", "eylem parametresi benim yolladigim parametreyi aldi"));
+
+  print(KonuVeEylem3());
+  print(KonuVeEylem3(
+      eylem: "eylem degerini ilk sirada verdim",
+      konu: "konu degerini ikinci sirada verdim"));
+
+  print(Selam("se", "lam"));
+
+
+
+
+
+
+
+
+
 //main fonksiyon bitişi
 }
 
@@ -181,4 +200,26 @@ class School {
   List<String> classes = ["Math", "Physic", "Chemistiry"];
 }
 
+//konu ve eylem parametrelerinin her ikisi de zorunludur
+String KonuVeEylem(String konu, String eylem) {
+  return konu + ": " + eylem;
+}
 
+//köşeli parantez ile yaratılan parametreler zorunlu değildir ve zorunlu olmadığı için default değer oluşturmanı ister
+//konu parametresi zorunludur
+//eylem parametresi zorunlu değildir
+String KonuVeEylem2(String konu,
+    [String eylem = "eylem parametresi default degerini aldi"]) {
+  return konu + ": " + eylem;
+}
+
+//küme parantezi ile yaratılan parametreler zorunlu değildir ve zorunlu olmadığı için default değer oluşturmanı ister
+//küme parantezi ile yaratılan parametreler isimlidir ve çağrıldığında sırayla değil isimle çağrılırlar
+//konu parametresi de eylem parametresi de zorunlu değildir
+String KonuVeEylem3({String konu = "", String eylem = ""}) {
+  return konu + ": " + eylem;
+}
+
+
+//return yapmak için expression formatı da kullanılabilir
+String Selam(String a, String b) => a + b;
