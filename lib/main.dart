@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 void main() {
+  //CONST ve FINAL sabit değerlerdir, sonradan değiştirilemez
   //CONST
   const value =
       "bu bir const value"; //kod compile edilirken sabit bir değer atanır
@@ -150,13 +151,36 @@ void main() {
 
   print(Selam("se", "lam"));
 
+  //SET -> küme parantezi ile gösterilir ve aynı değerleri içermez
+  final arkadaslar = {"ali", 2, true, "ali"};
+  print(arkadaslar);
+  //tip belirli SET
+  final Set<String> arkadass = {"a", "b", "c"};
+  print(arkadass);
 
+  //LIST -> köşeli parantez ile gösterilir ve aynı değerleri içerebilir
+  final mesajlar = ["selam", 1, false, "selam", 1, false];
+  print(mesajlar);
+  //tip belirli LIST
+  final List<int> mesajs = [1, 2, 3];
+  print(mesajs);
 
+  //MAP (key: value) şeklinde tanımlanır
+  final etiketler = {"sosyal": 1, "iş": 2, "aile": 3};
+  print(etiketler);
+  print(etiketler["sosyal"]);
+  //tip belirli MAP
+  final Map<String, bool> etikets = {"dogru": true, "yanlis": false};
+  print(etikets);
 
+  //sınıf içindeki static değişkenlere  direkt sınıf adı. diyerek ulaşabiliriz
+  final ol = Ogrenci.okulAdi;
 
-
-
-
+  //Generic class yaratma
+  GenericClassim<int> gci = GenericClassim<int>(3);
+  print(gci.value);
+  GenericClassim<String> gcs = GenericClassim<String>("selam");
+  print(gcs.value);
 
 //main fonksiyon bitişi
 }
@@ -220,6 +244,24 @@ String KonuVeEylem3({String konu = "", String eylem = ""}) {
   return konu + ": " + eylem;
 }
 
-
 //return yapmak için expression formatı da kullanılabilir
-String Selam(String a, String b) => a + b;
+String? Selam(String a, String b) => a + b;
+
+//CLASS içindeki STATIC değerler, GLOBAL değişken olur
+class Ogrenci {
+  //static değişken:
+  static String okulAdi = "Atatürk İlkokulu";
+  //static method:
+  static void okulAdiDegistir(String okuladi) {
+    okulAdi = okuladi;
+  }
+}
+
+//Generic class'tan bir tane yaratıp, farkı türler için istediğimiz kadar kullanabiliyoruz
+class GenericClassim<T> {
+  T value;
+  GenericClassim(this.value);
+}
+
+//Aşağıdaki generic class, sadece num yani int ve double türünde oluşsun istedik
+class GenericClassim2<T extends num> {}
